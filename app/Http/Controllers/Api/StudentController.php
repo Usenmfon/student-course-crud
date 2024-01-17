@@ -24,7 +24,32 @@ class StudentController extends BaseController
         }
     }
 
-    
+    /**
+     * Search for a resource by name.
+     */
+
+    public function search(Request $request)
+    {
+        try{
+            $student_name = $request->query('name');
+
+            $results = Student::where('first_name', 'LIKE', "%{$student_name}%")
+                                ->orWhere('last_name', 'LIKE', "%{$student_name}")->get();
+
+            $check_results = json_decode($results, true);
+
+
+            if(empty($check_results))
+            {
+                return $this->sendError('Student Not Found', 404);
+            }
+
+            return $this->sendResponse(StudentResource::collection($results), 'Resource Retrieved Successfully');
+
+        } catch(\Exception $e){
+            return $this->sendError($e->getMessage(), 500);
+        }
+    }
 
     /**
      * Show the form for creating a new resource.
