@@ -18,6 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('courses/search', 'App\Http\Controllers\Api\CourseController@search');
 Route::get('students/search', 'App\Http\Controllers\Api\StudentController@search');
 Route::resource('students', 'App\Http\Controllers\Api\StudentController');
 Route::resource('courses', 'App\Http\Controllers\Api\CourseController');

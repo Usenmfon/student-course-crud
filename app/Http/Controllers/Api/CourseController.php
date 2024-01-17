@@ -26,6 +26,33 @@ class CourseController extends BaseController
     }
 
     /**
+     * Search for a resource by name.
+     */
+
+     public function search(Request $request)
+     {
+         try{
+             $course = $request->query('course');
+
+             $results = Course::where('name', 'LIKE', "%{$course}%")
+                                 ->orWhere('code', 'LIKE', "%{$course}")->get();
+
+             $check_results = json_decode($results, true);
+
+
+             if(empty($check_results))
+             {
+                 return $this->sendError('Course Not Found', 404);
+             }
+
+             return $this->sendResponse(CourseResource::collection($results), 'Resource Retrieved Successfully');
+
+         } catch(\Exception $e){
+             return $this->sendError($e->getMessage(), 500);
+         }
+     }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
