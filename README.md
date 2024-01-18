@@ -1,4 +1,4 @@
- **# Laravel Backend API**
+ **# Student-Course Backend API**
 
 **## Getting Started**
 
