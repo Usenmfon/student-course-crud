@@ -67,7 +67,9 @@ php artisan test
 ```
 
 **## Using Postman**
-
+```bash
+Postman: https://documenter.getpostman.com/view/12877491/2s9YsRcpCe
+```
 - Import the Postman collection (provided in the `postman` directory).
 - Set the base URL to `http://localhost:8000` (or your server's URL).
 - Use the appropriate API endpoints for testing.
