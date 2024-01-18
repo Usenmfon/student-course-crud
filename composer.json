@@ -45,7 +45,8 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "generate-seeders": "php artisan db:seed"
     },
     "extra": {
         "laravel": {
