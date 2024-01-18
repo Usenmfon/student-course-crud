@@ -80,7 +80,7 @@ class StudentController extends BaseController
 
             $student = Student::create($input);
 
-            return $this->sendResponse(new StudentResource($student), 'Student Retrieved Successfully');
+            return $this->sendResponse(new StudentResource($student), 'Student Retrieved Successfully', 201);
         } catch(\Exception $e){
             return $this->sendError($e->getMessage(), 500);
         }

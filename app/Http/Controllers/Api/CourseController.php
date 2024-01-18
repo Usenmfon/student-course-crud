@@ -80,7 +80,7 @@ class CourseController extends BaseController
 
             $course = Course::create($input);
 
-            return $this->sendResponse(new CourseResource($course), 'Course Retrieved Successfully');
+            return $this->sendResponse(new CourseResource($course), 'Course Retrieved Successfully', 201);
 
         } catch(\Exception $e){
             return $this->sendError($e->getMessage(), 500);
@@ -97,7 +97,7 @@ class CourseController extends BaseController
 
             if(is_null($course))
             {
-                return $this->sendError('Course Not Found.');
+                return $this->sendError('Course Not Found.', 404);
             }
 
             return $this->sendResponse(new CourseResource($course), 'Course Retrieved Successfully');
