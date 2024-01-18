@@ -52,11 +52,18 @@ class StudentController extends BaseController
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show result from students and courses.
      */
-    public function create()
+    public function student_courses($id)
     {
-        //
+        try{
+            $students = Student::with('courses')->where('id', $id)->first();
+
+            return response()->json($students);
+
+        } catch(\Exception $e){
+            return $this->sendError($e->getMessage(), 500);
+        }
     }
 
     /**
@@ -80,7 +87,7 @@ class StudentController extends BaseController
 
             $student = Student::create($input);
 
-            return $this->sendResponse(new StudentResource($student), 'Student Retrieved Successfully', 201);
+            return $this->sendResponse(new StudentResource($student), 'Student Created Successfully', 201);
         } catch(\Exception $e){
             return $this->sendError($e->getMessage(), 500);
         }
